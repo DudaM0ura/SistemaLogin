@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Middleware\AdminAccess;
+use App\Http\Middleware\ClientAccess;                                                                                         
 
 class LoginController extends Controller
 {
@@ -16,12 +18,15 @@ class LoginController extends Controller
       $credenciais = $request->validate([
           'name' => ['required'],
           'password' => ['required'],
+      ],[
+        'name.required' => 'Usuário é obrigatório!',
+        'password.required' => 'Senha é obrigatória!'
       ]);
  
        if (Auth::attempt($credenciais)) {
-           dd('logado');
+           dd('ok');
        }else{
-           dd('error');
+           return redirect()->back()->with('danger','E-mail ou senha inválidos!');
        }
     }
 }

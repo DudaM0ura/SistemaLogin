@@ -292,6 +292,10 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 10px;
-    width: 400px;
+    padding: 20px;
+    width: 500px;
+  }
+  .alert p{
+  
+    width: 10px auto;
   }
